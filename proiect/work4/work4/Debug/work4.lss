@@ -1,0 +1,215 @@
+
+work4.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000118  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  00000118  000001ac  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  0080006a  0080006a  000001b6  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000001b6  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001e8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000090  00000000  00000000  00000224  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000086b  00000000  00000000  000002b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000705  00000000  00000000  00000b1f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000403  00000000  00000000  00001224  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000dc  00000000  00000000  00001628  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000393  00000000  00000000  00001704  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000003c  00000000  00000000  00001a97  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000060  00000000  00000000  00001ad3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 4e 00 	jmp	0x9c	; 0x9c <__vector_6>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 e1       	ldi	r30, 0x18	; 24
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ac 36       	cpi	r26, 0x6C	; 108
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 5f 00 	call	0xbe	; 0xbe <main>
+  8a:	0c 94 8a 00 	jmp	0x114	; 0x114 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <initDigit>:
+#include <avr/io.h>
+#include <stdint.h>
+#include <util/delay.h>
+
+void initDigit() {
+	DDRA = 0xFF;
+  92:	8f ef       	ldi	r24, 0xFF	; 255
+  94:	8a bb       	out	0x1a, r24	; 26
+  96:	08 95       	ret
+
+00000098 <displayDigit>:
+}
+
+void displayDigit(uint8_t digit) {
+	PORTA = digit;
+  98:	8b bb       	out	0x1b, r24	; 27
+  9a:	08 95       	ret
+
+0000009c <__vector_6>:
+#include "sevenSegment.h"
+#include "timer.h"
+
+uint8_t digit = 0, flag=0;
+
+ISR(TIMER1_COMPA_vect) {
+  9c:	1f 92       	push	r1
+  9e:	0f 92       	push	r0
+  a0:	0f b6       	in	r0, 0x3f	; 63
+  a2:	0f 92       	push	r0
+  a4:	11 24       	eor	r1, r1
+  a6:	8f 93       	push	r24
+	//displayDigit(digitMap[digit++]);
+	//if(digit == 10) digit = 0;
+	flag++;
+  a8:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <__data_end>
+  ac:	8f 5f       	subi	r24, 0xFF	; 255
+  ae:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <__data_end>
+}
+  b2:	8f 91       	pop	r24
+  b4:	0f 90       	pop	r0
+  b6:	0f be       	out	0x3f, r0	; 63
+  b8:	0f 90       	pop	r0
+  ba:	1f 90       	pop	r1
+  bc:	18 95       	reti
+
+000000be <main>:
+
+int main(void)
+{
+	initDigit();
+  be:	0e 94 49 00 	call	0x92	; 0x92 <initDigit>
+	timer1_init();
+  c2:	0e 94 86 00 	call	0x10c	; 0x10c <timer1_init>
+	
+	TCCR1B = (1<< WGM12) | (1 << CS12);
+  c6:	8c e0       	ldi	r24, 0x0C	; 12
+  c8:	8e bd       	out	0x2e, r24	; 46
+	
+	timer1_setCompareValue(0x70, 0x80);
+  ca:	60 e8       	ldi	r22, 0x80	; 128
+  cc:	80 e7       	ldi	r24, 0x70	; 112
+  ce:	0e 94 83 00 	call	0x106	; 0x106 <timer1_setCompareValue>
+	// OCR1A = 0x7080; // 0xE100 = valoare pentru t = 1 secunda // OCR1AH L
+	
+	sei();
+  d2:	78 94       	sei
+    while (1) {
+		if(flag)
+  d4:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <__data_end>
+  d8:	88 23       	and	r24, r24
+  da:	e1 f3       	breq	.-8      	; 0xd4 <main+0x16>
+		{
+			displayDigit(digitMap[digit++]);
+  dc:	e0 91 6b 00 	lds	r30, 0x006B	; 0x80006b <digit>
+  e0:	81 e0       	ldi	r24, 0x01	; 1
+  e2:	8e 0f       	add	r24, r30
+  e4:	80 93 6b 00 	sts	0x006B, r24	; 0x80006b <digit>
+  e8:	f0 e0       	ldi	r31, 0x00	; 0
+  ea:	e0 5a       	subi	r30, 0xA0	; 160
+  ec:	ff 4f       	sbci	r31, 0xFF	; 255
+  ee:	80 81       	ld	r24, Z
+  f0:	0e 94 4c 00 	call	0x98	; 0x98 <displayDigit>
+			if(digit == 10) digit = 0;
+  f4:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <digit>
+  f8:	8a 30       	cpi	r24, 0x0A	; 10
+  fa:	11 f4       	brne	.+4      	; 0x100 <main+0x42>
+  fc:	10 92 6b 00 	sts	0x006B, r1	; 0x80006b <digit>
+			flag=0;
+ 100:	10 92 6a 00 	sts	0x006A, r1	; 0x80006a <__data_end>
+ 104:	e7 cf       	rjmp	.-50     	; 0xd4 <main+0x16>
+
+00000106 <timer1_setCompareValue>:
+uint8_t timer1_match() {
+	return ((TIFR >> OCF1A) & 1) == 1;
+}
+
+void timer1_resetAfterMatch() {
+	TIFR |= 1 << OCF1A;
+ 106:	8b bd       	out	0x2b, r24	; 43
+ 108:	6a bd       	out	0x2a, r22	; 42
+ 10a:	08 95       	ret
+
+0000010c <timer1_init>:
+}
+
+void timer1_init() {
+	TIMSK |= 1 << OCIE1A;
+ 10c:	89 b7       	in	r24, 0x39	; 57
+ 10e:	80 61       	ori	r24, 0x10	; 16
+ 110:	89 bf       	out	0x39, r24	; 57
+ 112:	08 95       	ret
+
+00000114 <_exit>:
+ 114:	f8 94       	cli
+
+00000116 <__stop_program>:
+ 116:	ff cf       	rjmp	.-2      	; 0x116 <__stop_program>
