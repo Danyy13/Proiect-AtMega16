@@ -4,3 +4,7 @@
 
 main.c
 
+serial.c
+
+sevenSegment.c
+
